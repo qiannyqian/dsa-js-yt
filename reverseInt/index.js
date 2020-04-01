@@ -7,7 +7,21 @@
 //   reverseInt(-13) === -31
 //   reverseInt(-100) === -1
 
-function reverseInt(n) {}
+function reverseInt(n) {
+  let reversed = n
+    .toString()
+    .split('')
+    .reverse()
+    .join('');
+
+  reversed = parseInt(reversed);
+
+  if (n < 0) {
+    return reversed * -1;
+  }
+
+  return reversed;
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -32,18 +46,18 @@ function reverseInt(n) {}
 //                          ______ ______ ______ ______ ______
 //                         |______|______|______|______|______|
 
-mocha.setup("bdd");
+mocha.setup('bdd');
 const { assert } = chai;
 
-describe("Integer Reversal", () => {
-  it("reverseInt() works on positive numbers", () => {
+describe('Integer Reversal', () => {
+  it('reverseInt() works on positive numbers', () => {
     assert.equal(reverseInt(3), 3);
     assert.equal(reverseInt(13), 31);
     assert.equal(reverseInt(100), 1);
     assert.equal(reverseInt(1408), 8041);
   });
 
-  it("reverseInt() works on negative numbers numbers", () => {
+  it('reverseInt() works on negative numbers numbers', () => {
     assert.equal(reverseInt(-3), -3);
     assert.equal(reverseInt(-13), -31);
     assert.equal(reverseInt(-100), -1);
