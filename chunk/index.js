@@ -6,7 +6,47 @@
 // chunk(["a", "b", "c", "d"], 2) --> [[ "a", "b"], ["c", "d"]]
 // chunk([0, 1, 2, 3, 4, 5], 4) -->  [[0, 1, 2, 3], [4, 5]]
 
-function chunk(array, size) {}
+//Pseudo-code
+// create empty Result array
+// loop throurgh each element in input array
+// -> grab last subarray in Result array
+// -> if last subarray does not exist OR last subarray is same length as size
+// ---> insert new subarray with just input array element into result array
+// -> else
+// ---> push input array element into last subarray
+// return result array
+
+function chunk(array, size) {
+  let res = [];
+
+  // for (let i = 0; i < array.length; i++) {
+  //   const item = array[i];
+  //   const last = res[res.length - 1];
+  //   //last refers to the last subarray in the given array
+
+  //   //if there's no last subarray, or if length of the last subarray is equal to the size
+  //   if (!last || last.length === size) {
+  //     //push in new subarray with the item
+  //     res.push([item]);
+  //   } else {
+  //     //push item into last subarray
+  //     last.push(item);
+  //   }
+  // }
+  let temp = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const item = array[i];
+    temp.push(item);
+
+    if (temp.length === size || i === array.length - 1) {
+      res.push(temp);
+      temp = [];
+    }
+  }
+
+  return res;
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -31,18 +71,24 @@ function chunk(array, size) {}
 //                          ______ ______ ______ ______ ______
 //                         |______|______|______|______|______|
 
-mocha.setup("bdd");
+mocha.setup('bdd');
 const { assert } = chai;
 
-describe("Array Chunking", () => {
-  it("chunk() works", () => {
-    let arr = ["a", "b", "c", "d"];
+describe('Array Chunking', () => {
+  it('chunk() works', () => {
+    let arr = ['a', 'b', 'c', 'd'];
     let chunked = chunk(arr, 2);
-    assert.deepEqual(chunked, [["a", "b"], ["c", "d"]]);
+    assert.deepEqual(chunked, [
+      ['a', 'b'],
+      ['c', 'd'],
+    ]);
 
     arr = [0, 1, 2, 3, 4, 5];
     chunked = chunk(arr, 4);
-    assert.deepEqual(chunked, [[0, 1, 2, 3], [4, 5]]);
+    assert.deepEqual(chunked, [
+      [0, 1, 2, 3],
+      [4, 5],
+    ]);
   });
 });
 

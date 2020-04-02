@@ -5,7 +5,19 @@
 //   capitalize("I'm a little tea pot") --> 'I'm A Little Tea Pot'
 //   capitalize('sHoRt AnD sToUt') --> 'Short And Stout'
 
-function capitalize(str) {}
+//Complexity O(n)
+
+function capitalize(str) {
+  const arrOfWords = str.split(' ');
+  const arrOfWordsCased = [];
+
+  for (let i = 0; i < arrOfWords.length; i++) {
+    const word = arrOfWords[i];
+    arrOfWordsCased.push(word[0].toUpperCase() + word.slice(1).toLowerCase());
+  }
+
+  return arrOfWordsCased.join(' ');
+}
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
@@ -30,15 +42,15 @@ function capitalize(str) {}
 //                          ______ ______ ______ ______ ______
 //                         |______|______|______|______|______|
 
-mocha.setup("bdd");
+mocha.setup('bdd');
 const { assert } = chai;
 
-describe("Capitalization", () => {
-  it("capitalizes the first letter of each word", () => {
+describe('Capitalization', () => {
+  it('capitalizes the first letter of each word', () => {
     assert.equal(capitalize("I'm a little tea pot"), "I'm A Little Tea Pot");
   });
-  it("lowercases the rest of the word", () => {
-    assert.equal(capitalize("sHoRt AnD sToUt"), "Short And Stout");
+  it('lowercases the rest of the word', () => {
+    assert.equal(capitalize('sHoRt AnD sToUt'), 'Short And Stout');
   });
 });
 
